@@ -14,7 +14,7 @@ class Fraction {
       nDen = this.den;
       nNum = (this.num + fr.num);
     }
-    return (`${nNum} ` + ` ${nDen}`);
+    return (`${nNum}/${nDen}`);
   }
 
   res(fr) {
@@ -27,19 +27,19 @@ class Fraction {
       nDen = this.den;
       nNum = (this.num - fr.num);
     }
-    return (`${nNum} ` + ` ${nDen}`);
+    return (`${nNum}/${nDen}`);
   }
 
   mul(fr) {
     const nNum = this.num * fr.num;
     const nDen = this.den * fr.den;
-    return (`${nNum} ` + ` ${nDen}`);
+    return (`${nNum}/${nDen}`);
   }
 
   div(fr) {
     const nNum = this.num * fr.den;
     const nDen = this.den * fr.num;
-    return (`${nNum} ` + ` ${nDen}`);
+    return (`${nNum}/${nDen}`);
   }
 }
 
