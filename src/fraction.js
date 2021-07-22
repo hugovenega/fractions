@@ -49,4 +49,4 @@ const c = (a.add(b));
 const d = (a.res(b));
 const e = (a.mul(b));
 const f = (a.div(b));
-console.log(c, d, e, f);
+console.log(`suma ${c} | resta ${d} | mult ${e} | div ${f}`);
