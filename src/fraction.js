@@ -27,6 +27,12 @@ class Fraction {
       console.log(nNum, nDen);
     }
   }
+
+  mul(fr) {
+    const nNum = this.num * fr.num;
+    const nDen = this.den * fr.den;
+    console.log(nNum, nDen);
+  }
 }
 
 const fr1 = new Fraction(1, 5);
@@ -41,3 +47,7 @@ console.log('Pruebas .res con 1/5 y 1/4');
 fr1.res(fr2);
 console.log('Pruebas .res con 1/3 y 2/3');
 fr3.res(fr4);
+console.log('Pruebas .mul con 1/5 y 1/4');
+fr1.mul(fr2);
+console.log('Pruebas .mul con 1/3 y 2/3');
+fr3.mul(fr4);
