@@ -1,7 +1,18 @@
 class Fraction {
   constructor(num, den) {
-    this.num = num;
-    this.den = den;
+    if (num === den) {
+      this.num = 1;
+      this.den = 1;
+    } else if (num % den === 0) {
+      this.num = num / den;
+      this.den = 1;
+    } else if (den % num === 0) {
+      this.num = num / num;
+      this.den = den / num;
+    } else {
+      this.num = num;
+      this.den = den;
+    }
   }
 
   add(fr) {
@@ -43,10 +54,10 @@ class Fraction {
   }
 }
 
-const a = new Fraction(1, 5);
+const a = new Fraction(2, 4);
 const b = new Fraction(1, 4);
 const c = (a.add(b));
 const d = (a.res(b));
 const e = (a.mul(b));
 const f = (a.div(b));
-console.log(c);
+console.log(a);
