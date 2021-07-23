@@ -76,6 +76,10 @@ class Fraction {
     nDen = this.num;
     return new Fraction(nNum, nDen);
   }
+
+  get toString() {
+    return `${this.num}/${this.den}`;
+  }
 }
 
 const a = new Fraction(3, 4);
@@ -86,4 +90,5 @@ const e = (a.mul(b));
 const f = (a.div(b));
 const g = (a.pot(1 / 2));
 const h = (a.inv);
-console.log(h);
+const i =(a.toString);
+console.log(i);
