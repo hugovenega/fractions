@@ -68,6 +68,14 @@ class Fraction {
     }
     return new Fraction(nNum, nDen);
   }
+
+  get inv() {
+    let nNum;
+    let nDen;
+    nNum = this.den;
+    nDen = this.num;
+    return new Fraction(nNum, nDen);
+  }
 }
 
 const a = new Fraction(3, 4);
@@ -76,5 +84,6 @@ const c = (a.add(b));
 const d = (a.res(b));
 const e = (a.mul(b));
 const f = (a.div(b));
-const g = (a.pot(1/2));
-console.log(g);
+const g = (a.pot(1 / 2));
+const h = (a.inv);
+console.log(h);
