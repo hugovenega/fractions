@@ -52,12 +52,29 @@ class Fraction {
     const nDen = this.den * fr.num;
     return new Fraction(nNum, nDen);
   }
+
+  pot(p) {
+    let nNum;
+    let nDen;
+    if (p > 0) {
+      nNum = Math.pow(this.num, p);
+      nDen = Math.pow(this.den, p);
+    } else if (p < 0) {
+      nNum = Math.pow(this.den, Math.abs(p));
+      nDen = Math.pow(this.num, Math.abs(p));
+    } else {
+      nNum = 1;
+      nDen = 1;
+    }
+    return new Fraction(nNum, nDen);
+  }
 }
 
-const a = new Fraction(2, 4);
+const a = new Fraction(3, 4);
 const b = new Fraction(1, 4);
 const c = (a.add(b));
 const d = (a.res(b));
 const e = (a.mul(b));
 const f = (a.div(b));
-console.log(a);
+const g = (a.pot(1/2));
+console.log(g);
