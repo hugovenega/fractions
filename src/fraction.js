@@ -75,6 +75,10 @@ class Fraction {
     return x / y;
   }
 
+  get aNum() {
+    return this.num / this.den;
+  }
+
   get inv() {
     let nNum;
     let nDen;
@@ -98,4 +102,4 @@ const g = (a.pot(1 / 2));
 const h = (a.inv);
 const i = (a.toString);
 const j = (a.log(4));
-console.log(j);
+console.log(a.aNum);
