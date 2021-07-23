@@ -69,6 +69,12 @@ class Fraction {
     return new Fraction(nNum, nDen);
   }
 
+  log(b) {
+    const x = Math.pow(b, this.num);
+    const y = Math.pow(b, this.den);
+    return x / y;
+  }
+
   get inv() {
     let nNum;
     let nDen;
@@ -90,5 +96,6 @@ const e = (a.mul(b));
 const f = (a.div(b));
 const g = (a.pot(1 / 2));
 const h = (a.inv);
-const i =(a.toString);
-console.log(i);
+const i = (a.toString);
+const j = (a.log(4));
+console.log(j);
