@@ -1,105 +1,103 @@
 class Fraction {
-  constructor(num, den) {
-    if (num === den) {
-      this.num = 1;
-      this.den = 1;
-    } else if (num % den === 0) {
-      this.num = num / den;
-      this.den = 1;
-    } else if (den % num === 0) {
-      this.num = num / num;
-      this.den = den / num;
+  constructor(numerator, denominator) {
+    this.simplify(numerator, denominator);
+  }
+
+  simplify(numerator, denominator) {
+    if (numerator === denominator) {
+      this.numerator = 1;
+      this.denominator = 1;
+    } else if (numerator % denominator === 0) {
+      this.numerator = numerator / denominator;
+      this.denominator = 1;
+    } else if (denominator % numerator === 0) {
+      this.numerator = numerator / numerator;
+      this.denominator = denominator / numerator;
     } else {
-      this.num = num;
-      this.den = den;
+      this.numerator = numerator;
+      this.denominator = denominator;
     }
   }
 
-  add(fr) {
-    let nDen;
-    let nNum;
-    if (this.den !== fr.den) {
-      nDen = this.den * fr.den;
-      nNum = this.num * fr.den + fr.num * this.den;
+  add(fraction) {
+    let newDenominator;
+    let newNumerator;
+    if (this.den !== fraction.den) {
+      newDenominator = this.den * fraction.den;
+      newNumerator = this.numerator * fraction.denominator + fraction.numerator * this.denominator;
     } else {
-      nDen = this.den;
-      nNum = this.num + fr.num;
+      newDenominator = this.denominator;
+      newNumerator = this.numerator + fraction.numerator;
     }
-    return new Fraction(nNum, nDen);
+    return new Fraction(newNumerator, newDenominator);
   }
 
-  res(fr) {
-    let nDen;
-    let nNum;
-    if (this.den !== fr.den) {
-      nDen = this.den * fr.den;
-      nNum = this.num * fr.den - fr.num * this.den;
+  substract(fraction) {
+    let newDenominator;
+    let newNumerator;
+    if (this.denominator !== fraction.denominator) {
+      newDenominator = this.denominator * fraction.denominator;
+      newNumerator = this.numerator * fraction.denominator - fraction.numerator * this.denominator;
     } else {
-      nDen = this.den;
-      nNum = this.num - fr.num;
+      newDenominator = this.denominator;
+      newNumerator = this.numerator - fraction.numerator;
     }
-    return new Fraction(nNum, nDen);
+    return new Fraction(newNumerator, newDenominator);
   }
 
-  mul(fr) {
-    const nNum = this.num * fr.num;
-    const nDen = this.den * fr.den;
-    return new Fraction(nNum, nDen);
+  multiply(fraction) {
+    const newNumerator = this.numerator * fraction.numerator;
+    const newDenominator = this.denominator * fraction.denominator;
+    return new Fraction(newNumerator, newDenominator);
   }
 
-  div(fr) {
-    const nNum = this.num * fr.den;
-    const nDen = this.den * fr.num;
-    return new Fraction(nNum, nDen);
+  divide(fraction) {
+    const newNumerator = this.numerator * fraction.denominator;
+    const newDenominator = this.denominator * fraction.numerator;
+    return new Fraction(newNumerator, newDenominator);
   }
 
-  pot(p) {
-    let nNum;
-    let nDen;
-    if (p > 0) {
-      nNum = Math.pow(this.num, p);
-      nDen = Math.pow(this.den, p);
-    } else if (p < 0) {
-      nNum = Math.pow(this.den, Math.abs(p));
-      nDen = Math.pow(this.num, Math.abs(p));
+  pow(exponent) {
+    let newNumerator;
+    let newDenominator;
+    if (typeof exponent !== 'number') {
+      newNumerator = Math.pow(this.numerator, exponent.numerator / exponent.denominator);
+      newDenominator = Math.pow(this.denominator, exponent.numerator / exponent.denominator);
+    } else if (exponent >= 0) {
+      newNumerator = Math.pow(this.numerator, exponent);
+      newDenominator = Math.pow(this.denominator, exponent);
     } else {
-      nNum = 1;
-      nDen = 1;
+      newNumerator = Math.pow(this.denominator, Math.abs(exponent));
+      newDenominator = Math.pow(this.numerator, Math.abs(exponent));
     }
-    return new Fraction(nNum, nDen);
+    return new Fraction(newNumerator, newDenominator);
   }
 
-  log(b) {
-    const x = Math.pow(b, this.num);
-    const y = Math.pow(b, this.den);
-    return x / y;
+  log(base = Math.E) {
+    return Math.pow(base, this.numerator) / Math.pow(base, this.denominator);
   }
 
-  get aNum() {
-    return this.num / this.den;
+  get toNumber() {
+    return this.numerator / this.denominator;
   }
 
-  get inv() {
-    let nNum;
-    let nDen;
-    nNum = this.den;
-    nDen = this.num;
-    return new Fraction(nNum, nDen);
+  get inverse() {
+    return new Fraction(this.denominator, this.numerator);
   }
 
   get toString() {
-    return `${this.num}/${this.den}`;
+    return `${this.numerator}/${this.denominator}`;
   }
 }
 
-const a = new Fraction(3, 4);
-const b = new Fraction(1, 4);
+const a = new Fraction(4, 4);
+const b = new Fraction(2, 3);
 const c = (a.add(b));
-const d = (a.res(b));
-const e = (a.mul(b));
-const f = (a.div(b));
-const g = (a.pot(1 / 2));
-const h = (a.inv);
+const d = (a.substract(b));
+const e = (a.multiply(b));
+const f = (a.divide(b));
+const g = (a.pow(b));
+const h = (a.inverse);
 const i = (a.toString);
 const j = (a.log(4));
-console.log(a.aNum);
+console.log(a);
