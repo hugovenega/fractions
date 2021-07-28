@@ -1,29 +1,41 @@
 class Fraction {
   constructor(numerator, denominator) {
-    this.simplify(numerator, denominator);
+    this.simplify(numerator, denominator, this.greatestCommonDivisor(numerator, denominator));
   }
 
-  simplify(numerator, denominator) {
-    if (numerator === denominator) {
-      this.numerator = 1;
+  simplify(numerator, denominator, gCD) {
+    if (((denominator - numerator) < 1) && ((denominator - numerator) > 0)) {
+      this.numerator = numerator;
+      this.denominator = denominator;
+    } else if ((numerator == 0)) {
+      this.numerator = numerator;
       this.denominator = 1;
-    } else if (numerator % denominator === 0) {
-      this.numerator = numerator / denominator;
-      this.denominator = 1;
-    } else if (denominator % numerator === 0) {
-      this.numerator = numerator / numerator;
-      this.denominator = denominator / numerator;
+    } else if (gCD !== 1) {
+      this.numerator = numerator / gCD;
+      this.denominator = denominator / gCD;
     } else {
       this.numerator = numerator;
       this.denominator = denominator;
     }
   }
 
+  greatestCommonDivisor(numerator, denominator) {
+    let a = numerator;
+    let b = denominator;
+    let temporal;
+    while (b !== 0) {
+      temporal = b;
+      b = a % b;
+      a = temporal;
+    }
+    return a;
+  }
+
   add(fraction) {
     let newDenominator;
     let newNumerator;
-    if (this.den !== fraction.den) {
-      newDenominator = this.den * fraction.den;
+    if (this.denominator !== fraction.denominator) {
+      newDenominator = this.denominator * fraction.denominator;
       newNumerator = this.numerator * fraction.denominator + fraction.numerator * this.denominator;
     } else {
       newDenominator = this.denominator;
@@ -66,6 +78,9 @@ class Fraction {
     } else if (exponent >= 0) {
       newNumerator = Math.pow(this.numerator, exponent);
       newDenominator = Math.pow(this.denominator, exponent);
+    } else if (this.numerator == 0) {
+      newNumerator = 0;
+      newDenominator= 1;
     } else {
       newNumerator = Math.pow(this.denominator, Math.abs(exponent));
       newDenominator = Math.pow(this.numerator, Math.abs(exponent));
@@ -74,7 +89,13 @@ class Fraction {
   }
 
   log(base = Math.E) {
-    return Math.pow(base, this.numerator) / Math.pow(base, this.denominator);
+    let result;
+    if (this.numerator == 0){
+    result = "Not defined";
+    } else {
+    result = Math.pow(base, this.numerator) / Math.pow(base, this.denominator);
+    }
+    return result;
   }
 
   get toNumber() {
@@ -90,14 +111,4 @@ class Fraction {
   }
 }
 
-const a = new Fraction(4, 4);
-const b = new Fraction(2, 3);
-const c = (a.add(b));
-const d = (a.substract(b));
-const e = (a.multiply(b));
-const f = (a.divide(b));
-const g = (a.pow(b));
-const h = (a.inverse);
-const i = (a.toString);
-const j = (a.log(4));
-console.log(a);
+module.exports = Fraction;
