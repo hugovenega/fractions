@@ -18,8 +18,7 @@ describe('testing Stack class with strings', () => {
     const s = new Stack();
     s.push('item1');
     s.push('item2');
-    s.pop();
-    expect(s.internalStack[s.internalStack.length -1]).toEqual('item1');
+    expect(s.pop()).toEqual('item2');
   });
 
   it('should peek to the top of Stack and show "item3"', () => {
